@@ -79,8 +79,49 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Creating reactjs instagram with firebase
 
-### `step 1: delete src/` - App.js and Index.js only
+### first steps (removing unecessary parts)
 
-### `step 2: delete public/` - favicon.ico and index.html (fix the code) only
+#### `step 1: delete src/` - App.js and Index.js only
 
-### `step 3: add public/images` - get the images and users only (store images react - firebase)
+#### `step 2: delete public/` - favicon.ico and index.html (fix the code) only
+
+#### `step 3: add public/images` - get the images and users from github (store images react - firebase)
+
+#### `step 4: modify src/index.js` - clean it up to basics
+
+#### `step 5: add eslint` - add eslint extension and /.eslintrc.json (npx eslint --init) -> add code from github
+
+### guide #1: app initialization todos
+
+- client side rendered app: react(cra)
+  - database which is Firebase
+  - react-loading-skeleton
+  - tailwind
+- folder structure
+  - /src
+    - components
+    - constants
+    - context
+    - helpers
+    - hooks
+    - pages
+    - lib (firebase is going to live in here)
+    - services (firebase functions in here)
+    - styles (tailwind's folder (app/tailwind))
+
+### second steps (initializing the folder structure)
+
+#### `step 1: folder structure src/` - create the todos in folder structure
+
+    - /src
+        - components
+        - constants
+        - context
+        - helpers
+        - hooks
+        - lib
+        -services
+
+#### `step 2: src/seed.js` - add code from github (run it one time - to avoid duplicate data) (firebase is restricted)
+
+#### `step 3: setup/firebase` - get the images and users only (store images react - firebase)
