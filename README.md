@@ -226,9 +226,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
                 - register app
                 - copy firebase sdk
 
-```
-### guide #3: switching to different pages (routers)
-```
+### `guide #3: switching to different pages (routers)`
 
 #### `step 1: yarn add react-router-dom` - pushing users to different pages
 
