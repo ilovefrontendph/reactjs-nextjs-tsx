@@ -77,6 +77,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### `yarn add react-loading-skeleton` 3 -skeleton UI
 
+### `yarn add react-router-dom` 4 - pushing users to different pages
+
 ## Creating reactjs instagram with firebase
 
 ### guide #0: first steps (removing unecessary parts)
@@ -154,11 +156,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 #### `step 5: /src/context/firebase.js` - connection to the firestore
 
-    - import createContext -> react
-    - const FirebaseContext = createContext(null)
+    import createContext -> react
+    const FirebaseContext = createContext(null)
+    export default FirebaseContext
         - context allows us to insert information
 
-        ```javascript
             // This is how context works
             // provider and consumer (if you want the component to access firebase)
             provider------ component 1 ------ (firebase init here)
@@ -170,4 +172,84 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
             ------ component 7 ------
             ------ component 8 ------
             consumer------ component 9 ------ (firebase init here)
-        ```
+
+#### `step 6: /src/index.js` - use FirebaseContext
+
+        import FirebaseContext from './context/firebase'
+        import {firebase, FieldValue} from './context/firebase'
+
+        ReactDOM.render (
+            <FirebaseContext.Provider value={{ firebase, FieldValue}}>
+                <App />
+            </FirebaseContext.Provider>
+            document.getElementById('root')
+        )
+
+#### `step 7: /src/lib/firebase.js` - initialize application, seed firebase
+
+        import Firebase from 'firebase/app';
+        import 'firebase/firestore';
+        import 'firebase/auth';
+
+        // here I want to import the seed file
+        // import { seedDatabase } from '../seed'
+
+        const config = {
+        apiKey: '',
+        authDomain: '',
+        projectId: '',
+        storageBucket: '',
+        messagingSenderId: '',
+        appId: ''
+        };
+        // firebase sdk
+
+        const firebase = Firebase.initializeApp(config);
+        const { FieldValue } = Firebase.firestore;
+
+        // here is where I want to call the seed file (only Once!)
+        // seedDatabase(firebase)
+
+        export { firebase, FieldValue };
+
+#### `step 8: firebase/firestore` - initialize application
+
+        - general
+            - web
+                - (web name) instagram yt
+                - register app
+                - copy firebase sdk
+
+### guide #2: third steps (routers)
+
+#### `step 9: yarn add react-router-dom` - pushing users to different pages
+
+        - specify route
+
+#### `step 10: src/App.js` - Bundling,
+
+#### bundle - load the file that the user requests
+
+        import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+        export default function App() {
+        const { user } = useAuthListener();
+
+        return (
+            <UserContext.Provider value={{ user }}>
+            <Router>
+                <Suspense fallback={<ReactLoader />}>
+                <Switch>
+                    <Route path={ROUTES.LOGIN} component={Login} />
+                    <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                    <Route path={ROUTES.PROFILE} component={Profile} />
+                    <ProtectedRoute user={user} path={ROUTES.DASHBOARD} exact>
+                    <Dashboard />
+                    </ProtectedRoute>
+                    <Route component={NotFound} />
+                </Switch>
+                </Suspense>
+            </Router>
+            </UserContext.Provider>
+        );
+        }
