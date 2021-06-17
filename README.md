@@ -69,8 +69,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## yarn add date-fns
+## Dependencies
 
-## yarn add firebase
+### `yarn add date-fns` 1 - let's us add dates easily
 
-## yarn add react-loading-skeleton
+### `yarn add firebase` 2 - backend connection
+
+### `yarn add react-loading-skeleton` 3 -skeleton UI
+
+## Creating reactjs instagram with firebase
+
+### `step 1: delete src/` - App.js and Index.js only
+
+### `step 2: delete public/` - favicon.ico and index.html (fix the code) only
+
+### `step 3: add public/images` - get the images and users only (store images react - firebase)
