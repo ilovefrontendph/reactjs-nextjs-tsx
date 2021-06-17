@@ -79,7 +79,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Creating reactjs instagram with firebase
 
-### first steps (removing unecessary parts)
+### guide #0: first steps (removing unecessary parts)
 
 #### `step 1: delete src/` - App.js and Index.js only
 
@@ -109,7 +109,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     - services (firebase functions in here)
     - styles (tailwind's folder (app/tailwind))
 
-### second steps (initializing the folder structure)
+### guide #2: second steps (initializing the folder structure)
 
 #### `step 1: folder structure src/` - create the todos in folder structure
 
@@ -124,4 +124,50 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 #### `step 2: src/seed.js` - add code from github (run it one time - to avoid duplicate data) (firebase is restricted)
 
-#### `step 3: setup/firebase` - get the images and users only (store images react - firebase)
+#### `step 3: setting up firebase` - go to firebase.google.com
+
+    - console
+        - add project
+            - step 1: app name (instagram)
+            - step 2: disable google analytics
+    - cloud firestore
+        - create database
+            -start in test mode (allows read and write)
+                - Philippines (asia-northeast2) -> switch to southeast
+                - Enable
+    - rules
+        - copy code from /firebase-rules.png
+    - data (house full of collection)
+        - collection (photos)
+            - autoid (delete document)
+        - collection (users)
+            - autoid (delete document)
+    - authentication
+        - Sign-in method
+            - enable (Email/Password)
+        - Users
+            - mckeenasma123@gmail.com
+            - test123
+            - note get the user ID and paste it in src/seed.js
+
+#### `step 4: /src/seed.js` - change the userID
+
+#### `step 5: /src/context/firebase.js` - connection to the firestore
+
+    - import createContext -> react
+    - const FirebaseContext = createContext(null)
+        - context allows us to insert information
+
+        ```javascript
+            // This is how context works
+            // provider and consumer (if you want the component to access firebase)
+            provider------ component 1 ------ (firebase init here)
+            ------ component 2 ------
+            ------ component 3 ------
+            consumer------ component 4 ------ (firebase init here)
+            ------ component 5 ------
+            ------ component 6 ------
+            ------ component 7 ------
+            ------ component 8 ------
+            consumer------ component 9 ------ (firebase init here)
+        ```
