@@ -81,7 +81,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Creating reactjs instagram with firebase
 
+```
 ### guide #0: first steps (removing unecessary parts)
+```
 
 #### `step 1: delete src/` - App.js and Index.js only
 
@@ -93,7 +95,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 #### `step 5: add eslint` - add eslint extension and /.eslintrc.json (npx eslint --init) -> add code from github
 
+```
 ### guide #1: app initialization todos
+```
 
 - client side rendered app: react(cra)
   - database which is Firebase
@@ -111,7 +115,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     - services (firebase functions in here)
     - styles (tailwind's folder (app/tailwind))
 
+```
 ### guide #2: second steps (initializing the folder structure)
+```
 
 #### `step 1: folder structure src/` - create the todos in folder structure
 
@@ -156,7 +162,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 #### `step 5: /src/context/firebase.js` - connection to the firestore
 
-    import createContext -> react
+    import createContext from 'react'
     const FirebaseContext = createContext(null)
     export default FirebaseContext
         - context allows us to insert information
@@ -175,42 +181,42 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 #### `step 6: /src/index.js` - use FirebaseContext
 
-        import FirebaseContext from './context/firebase'
-        import {firebase, FieldValue} from './context/firebase'
+    import FirebaseContext from './context/firebase'
+    import {firebase, FieldValue} from './context/firebase'
 
-        ReactDOM.render (
-            <FirebaseContext.Provider value={{ firebase, FieldValue}}>
-                <App />
-            </FirebaseContext.Provider>
-            document.getElementById('root')
-        )
+    ReactDOM.render (
+        <FirebaseContext.Provider value={{ firebase, FieldValue}}>
+            <App />
+        </FirebaseContext.Provider>
+        document.getElementById('root')
+    )
 
 #### `step 7: /src/lib/firebase.js` - initialize application, seed firebase
 
-        import Firebase from 'firebase/app';
-        import 'firebase/firestore';
-        import 'firebase/auth';
+    import Firebase from 'firebase/app';
+    import 'firebase/firestore';
+    import 'firebase/auth';
 
-        // here I want to import the seed file
-        // import { seedDatabase } from '../seed'
+    // here I want to import the seed file
+    // import { seedDatabase } from '../seed'
 
-        const config = {
-        apiKey: '',
-        authDomain: '',
-        projectId: '',
-        storageBucket: '',
-        messagingSenderId: '',
-        appId: ''
-        };
-        // firebase sdk
+    const config = {
+    apiKey: '',
+    authDomain: '',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: ''
+    };
+    // firebase sdk
 
-        const firebase = Firebase.initializeApp(config);
-        const { FieldValue } = Firebase.firestore;
+    const firebase = Firebase.initializeApp(config);
+    const { FieldValue } = Firebase.firestore;
 
-        // here is where I want to call the seed file (only Once!)
-        // seedDatabase(firebase)
+    // here is where I want to call the seed file (only Once!)
+    // seedDatabase(firebase)
 
-        export { firebase, FieldValue };
+    export { firebase, FieldValue };
 
 #### `step 8: firebase/firestore` - initialize application
 
@@ -220,36 +226,81 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
                 - register app
                 - copy firebase sdk
 
-### guide #2: third steps (routers)
+```
+### guide #3: switching to different pages (routers)
+```
 
-#### `step 9: yarn add react-router-dom` - pushing users to different pages
+#### `step 1: yarn add react-router-dom` - pushing users to different pages
 
-        - specify route
+    - specify route
 
-#### `step 10: src/App.js` - Bundling,
+#### `step 2: src/App.js` - Bundling,
 
 #### bundle - load the file that the user requests
 
-        import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+```
+> we can do this in -> webpack, lazy loading (cra), suspense
+```
 
-        export default function App() {
-        const { user } = useAuthListener();
+    import { lazy, Suspense } from 'react';
+    import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+    import ReactLoader from './components/loader';
+    import * as ROUTES from './constants/routes';
+    import UserContext from './context/user';
+    import useAuthListener from './hooks/use-auth-listener';
 
-        return (
-            <UserContext.Provider value={{ user }}>
-            <Router>
-                <Suspense fallback={<ReactLoader />}>
-                <Switch>
-                    <Route path={ROUTES.LOGIN} component={Login} />
-                    <Route path={ROUTES.SIGN_UP} component={SignUp} />
-                    <Route path={ROUTES.PROFILE} component={Profile} />
-                    <ProtectedRoute user={user} path={ROUTES.DASHBOARD} exact>
-                    <Dashboard />
-                    </ProtectedRoute>
-                    <Route component={NotFound} />
-                </Switch>
-                </Suspense>
-            </Router>
-            </UserContext.Provider>
-        );
-        }
+    import ProtectedRoute from './helpers/protected-route';
+
+```
+> lazy() - allows us to split huge bundle into chunks.
+         - code splitting
+            example:
+                we only want login page.
+                -> const Login = lazy(() => import('./pages/login'));
+
+```
+
+    const Login = lazy(() => import('./pages/login'));
+    const SignUp = lazy(() => import('./pages/sign-up'));
+    const Dashboard = lazy(() => import('./pages/dashboard'));
+    const Profile = lazy(() => import('./pages/profile'));
+    const NotFound = lazy(() => import('./pages/not-found'));
+
+
+    export default function App() {
+    const { user } = useAuthListener();
+
+    return (
+        <UserContext.Provider value={{ user }}>
+        <Router>
+
+```
+> lazy() - allows us to provide a fallback.
+         - show when a Suspence (like React.lazy) child suspends.
+            example:
+                we only want login page.
+                -> const Login = lazy(() => import('./pages/login'));
+
+```
+
+            <Suspense fallback={<ReactLoader />}>
+            <Switch>
+                <Route path={ROUTES.LOGIN} component={Login} />
+                <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                <Route path={ROUTES.PROFILE} component={Profile} />
+                <ProtectedRoute user={user} path={ROUTES.DASHBOARD} exact>
+                <Dashboard />
+                </ProtectedRoute>
+                <Route component={NotFound} />
+            </Switch>
+            </Suspense>
+        </Router>
+        </UserContext.Provider>
+    );
+    }
+
+#### `step 2: src/pages/login.js` - build login page,
+
+    export default function Login()  {
+        return <p>I am the login page </p>
+    }
