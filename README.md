@@ -69,6 +69,176 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+### Instagram Clone Timestamps
+
+0:00 - Introduction
+7:11 - Showcase
+9:51 - Create React App (yarn)
+12:45 - Project Folder Structure
+14:49 - Installing Dependencies (Development Dependencies)
+Yarn install date-fns
+Yarn add firebase
+Yarn add react-loading-skeleton
+17:10 - Refactoring unnecessary files, refactoring code, cleaning up stuffs
+23:41 - Install Eslint
+27:29 - Creating Folder Structure, Talk about Architecture
+
+Firebase Setup
+37:28 - Setup Firebase
+38:45 - Firestore
+41:07 - Firestore Rules
+43:06 - Firestore (Collections & Docs)
+45:23 - Firebase Authentication
+48:22 - Realtime Database (Explanation)
+49:08 - createContext in firebase.js
+56:57 - Creating App in Firebase (SDK in config), Initialize, Add Seed)
+
+Login Page
+1:03:38 - Start working on Login Page
+1:04:40 - Install React Router Dom
+yarn add react-router-dom
+1:12:38 - Create Routes
+1:16:14 - Continue working on Login Page (Part 2)
+1:20:58 - Tailwind.css Introduction
+1:25:57 - Continue working on Login Page (Part 3)
+
+1:26:58 - Install more dependencies
+yarn add tailwindcss -D
+yarn install prop-types -D
+yarn add postcss-cli -D
+yarn add npm-run-all -D
+1:30:53 - Change how all scripts work
+1:34:44 - yarn add postcss -D
+
+1:35:20 - Create components folder
+
+Tailwind.css Setup
+1:39:56 - Tailwind.css Setup (Postcss.config.js, tailwind.config.js)
+1:41:28 - Completed Tailwind Setup, Continue working on Login Page (Part 4)
+
+1:45:05 - Interjection - Field Value (Firestore)
+
+1:47:33 - Continue working on Login Page (Login Form)
+2:07:24 - Tailwind.config - theme (Set colours)
+2:11:42 - Login Functionality (with Firebase)
+
+Signup Page
+2:16:49 - Signup Page
+2:28:30 - Check for user created is a duplicate(if username already exist in firebase)
+
+Not Found Page
+3:00:26 - Not Found Page
+
+Dashboard Page
+3:04:47 - Dashboard Page
+(3:06:48 - Created Timeline Component, 3:07:05 - Created Sidebar Component, 3:07:24 - Created Header Component)
+
+3:09:51 - use-auth -listener.js Hook
+3:17:00 - users.js UserContext
+3:21:15 - Back to Header Component
+3:47:58 - Working on Dashboard Page
+3:51:36 - Working on Sidebar Component
+3:51:52 - use-user.js hook
+4:04:10 - (Small Modification in folder structure) - Created “Sidebar” Folder, change sidebar.js to index.js, created user.js, suggestions.js)
+4:09:57 - In user.js
+4:18:37 - In user.js ⇒ Introduction to prop types
+4:30:40 - Created Timeline.js
+4:31:20 - Explanation on useMemo
+
+Why Did You Render
+4:33:22 - Add WhyDidYouRender
+4:35:30 - 4:48:19 - Struggling with some issues
+4:48:19 - Finally Figuring out some problems with WhyDidYouRender
+
+Suggestions
+4:56:18 - Working on suggestion.js (sidebar completed)
+5:04:57 - Get suggested profiles
+5:22:05 - Functionality: Remove followed user from suggestion
+5:28:49 - Functionality: Update user’s following & followers
+
+Timeline
+5:39:55 - Overview on Timeline (timeline.js)
+5:46:24 - Creating Post Component
+5:48:34 - Creating more custom hooks
+usePhotos ⇒ Get following users photos
+6:09:53 - Rendering out the photos (using React skeleton)
+
+Post
+6:16:32 - Start Working on Post Component
+6:20:55 - Components within Post
+(header, image, actions (like & comment icons), footer, comments)
+
+    6:21:40 - Header Component
+    6:26:33 - Image
+    6:29:14 - Actions
+
+6:33:09 - Service call in Firebase
+6:33:40 - Likes
+6:48:21 - Show Comments
+6:56:50 - Add Comments
+
+7:11:36 - Almost Complete
+7:18:03 - Adding Protected Routes
+
+Profile
+7:32:50 - Profile
+7:35:57 - Lazy load explanation
+
+7:51:00 - Continue working on Profile Page
+8:04:25 - Header Component in Profile Page
+8:07:51 - Profile Specific Header
+8:23:37 - Get User Photos
+8:43:29 - Continue working on header
+
+9:26:08 - Information in header
+
+9:42:46 - Photos Component in Profile Page
+
+Recap
+9:55:44 - Recap of everything we’ve done
+9:58:32 - Start of Review
+
+10:01:10 - Not found header
+
+Hooks
+10:02:41 - Review of usePhotos
+10:03:22 - Review of useUsers
+
+Helpers
+10:03:43 - Review of isUserLoggedIn
+10:03:56 - Review of ProtectedRoute
+
+Contexts
+10:04:12 - Review of contexts: firebase.js and user.js
+
+Routes
+10:04:34 - Review of Routes
+
+Post
+10:04:49 - Review of Posts
+
+10:07:08 - loadtest (Npm install -g loadtest)
+
+Creating a Production Build
+10:21:04 - Create a production build
+Yarn run build, Yarn global add serve
+
+10:44:05 - Deployment to Vercel done but with issues
+10:57:24 - Issues fixed
+
+Testing and Improving
+10:57:56 - Lighthouse
+11:08:04 - Wrapping up
+
+11:09:50 - Changes and Refactoring (Fixing Bugs)
+
+Paid Version Course
+11:54:27 - Quick Look at Paid Version
+11:55:36 - Cypress
+
+Ending
+11:59:45 - Signing Off
+
 ## Dependencies
 
 ### `yarn add date-fns` 1 - let's us add dates easily
@@ -1039,102 +1209,219 @@ start: modify it so that we can also run tailwind along with the scripts.
   - import Link
   - firebase and user -> useContext
   - check application if the user info is in there
+  - hero icons
+  - last: - delete account (firestore and auth) signup, copy uid, paste it to other accounts as well as the seed file
 
-    <header className="h-16 bg-white border-b border-gray-primary mb-8">
-          <div className="container mx-auto max-w-screen-lg h-full">
-            <div className="flex justify-between h-full">
-              <div className="text-gray-700 text-center flex items-center align-items cursor-pointer">
-                <h1 className="flex justify-center w-full">
-                  <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
-                    <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12" />
-                  </Link>
-                </h1>
-              </div>
-              <div className="text-gray-700 text-center flex items-center align-items">
-                {loggedInUser ? (
-                  <>
-                    <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
-                      <svg
-                        className="w-8 mr-6 text-black-light cursor-pointer"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                        />
-                      </svg>
-                    </Link>
+                <header className="h-16 bg-white border-b         border-gray-primary mb-8">
+                      <div className="container mx-auto         max-w-screen-lg h-full">
+                      <div className="flex justify-between h-full">
+                        <div className="text-gray-700 text-center flex      items-center align-items cursor-pointer">
+                          <h1 className="flex justify-center w-full">
+                            <Link to={ROUTES.DASHBOARD}         aria-label="Instagram logo">
+                              <img src="/images/logo.png"       alt="Instagram" className="mt-2 w-6/12" /   >
+                            </Link>
+                          </h1>
+                        </div>
+                        <div className="text-gray-700 text-center flex      items-center align-items">
+                          {loggedInUser ? (
+                            <>
+                              <Link to={ROUTES.DASHBOARD}       aria-label="Dashboard">
+                                <svg
+                                  className="w-8 mr-6 text-black-light      cursor-pointer"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1      1 0 001 1h3m10-11l2 2m-2-2v10a1 1       0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1      1 0 011-1h2a1 1 0 011 1v4a1 1 0     001 1m-6 0h6"
+                                  />
+                                </svg>
+                              </Link>
 
-                    <button
-                      type="button"
-                      title="Sign Out"
-                      onClick={() => {
-                        firebase.auth().signOut();
-                        history.push(ROUTES.LOGIN);
-                      }}
-                      onKeyDown={(event) => {
-                        if (event.key === 'Enter') {
-                          firebase.auth().signOut();
-                          history.push(ROUTES.LOGIN);
-                        }
-                      }}
-                    >
-                      <svg
-                        className="w-8 mr-6 text-black-light cursor-pointer"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                        />
-                      </svg>
-                    </button>
-                    {user && (
-                      <div className="flex items-center cursor-pointer">
-                        <Link to={`/p/${user?.username}`}>
-                          <img
-                            className="rounded-full h-8 w-8 flex"
-                            src={`/images/avatars/${user?.username}.jpg`}
-                            alt={`${user?.username} profile`}
-                            onError={(e) => {
-                              e.target.src = DEFAULT_IMAGE_PATH;
-                            }}
-                          />
-                        </Link>
+                              <button
+                                type="button"
+                                title="Sign Out"
+                                onClick={() => {
+                                  firebase.auth().signOut();
+                                  history.push(ROUTES.LOGIN);
+                                }}
+                                onKeyDown={(event) => {
+                                  if (event.key === 'Enter') {
+                                    firebase.auth().signOut();
+                                    history.push(ROUTES.LOGIN);
+                                  }
+                                }}
+                              >
+                                <svg
+                                  className="w-8 mr-6 text-black-light      cursor-pointer"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6      4v1a3 3 0 01-3 3H6a3 3 0        01-3-3V7a3 3 0 013-3h4a3 3 0 013       3v1"
+                                  />
+                                </svg>
+                              </button>
+                              {user && (
+                                <div className="flex items-center       cursor-pointer">
+                                  <Link to={`/p/${user?.username}`}>
+                                    <img
+                                      className="rounded-full h-8 w-8       flex"
+                                      src={`/images/avatars/${user?.        username}.jpg`}
+                                      alt={`${user?.username} profile`}
+                                      onError={(e) => {
+                                        e.target.src =      DEFAULT_IMAGE_PATH;
+                                      }}
+                                    />
+                                  </Link>
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <Link to={ROUTES.LOGIN}>
+                                <button
+                                  type="button"
+                                  className="bg-blue-medium font-bold       text-sm rounded text-white w-20 h-8"
+                                >
+                                  Log In
+                                </button>
+                              </Link>
+                              <Link to={ROUTES.SIGN_UP}>
+                                <button
+                                  type="button"
+                                  className="font-bold text-sm rounded      text-blue-medium w-20 h-8"
+                                >
+                                  Sign Up
+                                </button>
+                              </Link>
+                            </>
+                          )}
+                        </div>
                       </div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <Link to={ROUTES.LOGIN}>
-                      <button
-                        type="button"
-                        className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
-                      >
-                        Log In
-                      </button>
-                    </Link>
-                    <Link to={ROUTES.SIGN_UP}>
-                      <button
-                        type="button"
-                        className="font-bold text-sm rounded text-blue-medium w-20 h-8"
-                      >
-                        Sign Up
-                      </button>
-                    </Link>
-                  </>
-                )}
-              </div>
+                    </div>
+                  </header>
+
+#### `step 21: src/pages/dashboard.js` - aligning the items
+
+    import { useEffect } from 'react';
+    import PropTypes from 'prop-types';
+    import Header from '../components/header';
+    import Timeline from '../components/timeline';
+    import Sidebar from '../components/sidebar';
+    import useUser from '../hooks/use-user';
+    import LoggedInUserContext from '../context/logged-in-user';
+
+    export default function Dashboard({ user: loggedInUser }) {
+      const { user, setActiveUser } = useUser(loggedInUser.uid);
+      useEffect(() => {
+        document.title = 'Instagram';
+      }, []);
+
+      return (
+          <div className="bg-gray-background">
+            <Header />
+            <div className="grid grid-cols-3 gap-4 justify-between mx-auto  max-w-screen-lg">
+              <Timeline />
+              <Sidebar />
             </div>
           </div>
-        </header>
+      );
+    }
+
+    Dashboard.propTypes = {
+      user: PropTypes.object.isRequired
+    };
+
+#### `step 22: src/hooks/use-user.js` - pullout info from firebase
+
+    import { useState, useEffect } from 'react';
+    import { getUserByUserId } from '../services/firebase';
+
+    export default function useUser(userId) {
+    const [activeUser, setActiveUser] = useState();
+
+    useEffect(() => {
+    async function getUserObjByUserId(userId) {
+    const [user] = await getUserByUserId(userId);
+    setActiveUser(user || {});
+    }
+
+        if (userId) {
+        getUserObjByUserId(userId);
+        }
+
+    }, [userId]);
+
+    return { user: activeUser, setActiveUser };
+    }
+
+#### `step 23: src/services/firebase.js` - create getUserByUserId
+
+#### `step 24: src/components/sidebar/index.js` -build sidebar
+
+#### `step 25: src/components/sidebar/user.js` -build user
+
+```
+> focus on user component
+```
+
+- todos
+
+  - useMemo - memorize the result (enhances performance)
+    - do different quality checks
+    - when to useMemo ->
+  - PropTypes
+  - Skeleton
+
+            import PropTypes from 'prop-types';
+            import { Link } from 'react-router-dom';
+            import Skeleton from 'react-loading-skeleton';
+            import { DEFAULT_IMAGE_PATH } from '../../constants/paths';
+
+            export default function User({ username, fullName }) {
+            return !username || !fullName ? (
+                <Skeleton count={1} height={61} />
+            ) : (
+                <Link to={`/p/${username}`} className="grid grid-cols-4 gap-4 mb-6 items-center">
+                <div className="flex items-center justify-between col-span-1">
+                    <img
+                    className="rounded-full w-16 flex mr-3"
+                    src={`/images/avatars/${username}.jpg`}
+                    alt=""
+                    onError={(e) => {
+                        e.target.src = DEFAULT_IMAGE_PATH;
+                    }}
+                    />
+                </div>
+                <div className="col-span-3">
+                    <p className="font-bold text-sm">{username}</p>
+                    <p className="text-sm">{fullName}</p>
+                </div>
+                </Link>
+            );
+            }
+
+            User.propTypes = {
+            username: PropTypes.string,
+            fullName: PropTypes.string
+            };
+
+#### `step 27: src/components/timeline.js` - change col span
+
+#### `step 28: yarn add @welldone-software/why-did-you-render`
+
+- src/wdyr.js
+- src/index.js -> import './wdyr.js'
+- User.whyDidYouRender = true
+
+#### `step 28: src/components/sidebar/suggestions.js` -build suggestions
